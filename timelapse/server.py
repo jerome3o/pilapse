@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -6,9 +7,10 @@ from fastapi.responses import RedirectResponse
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
-scheduler = BackgroundScheduler()
+from timelapse.camera import get_misc_picture_path, take_picture
 
-from pilapse.camera import get_misc_picture_path, take_picture
+_logger = logging.getLogger(__name__)
+scheduler = BackgroundScheduler()
 
 
 app = FastAPI()
@@ -18,6 +20,7 @@ app.mount("/pictures", StaticFiles(directory="pictures"), name="pictures")
 @app.get("/take")
 def take():
     path = get_misc_picture_path()
+    _logger.info(f"Taking picture {path}")
     take_picture(path)
     return RedirectResponse(f'/{path.resolve().relative_to(Path(".").resolve())}')
 
@@ -28,3 +31,5 @@ def list_pictures():
 
 
 scheduler.add_job(take, "interval", minutes=1)
+scheduler.start()
+logging.basicConfig(level=logging.INFO)
