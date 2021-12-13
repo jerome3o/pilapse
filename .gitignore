@@ -1,3 +1,10 @@
+# IDE
+.vscode/
+
+# Project specific
+pictures/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
