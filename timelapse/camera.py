@@ -19,7 +19,7 @@ def take_picture(file_path: Union[str, Path]) -> None:
 
 
 def get_misc_picture_path() -> Path:
-    return Path("pictures") / "misc" / f"test_{datetime.now():%Y-%m-%d_%H-%M-%S}.jpg"
+    return Path("pictures") / "testing_day_1" / f"test_{datetime.now():%Y-%m-%d_%H-%M-%S}.jpg"
 
 def _main():
     take_picture(get_misc_picture_path())
