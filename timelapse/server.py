@@ -12,6 +12,7 @@ from timelapse.camera import get_misc_picture_path, take_picture
 _logger = logging.getLogger(__name__)
 scheduler = BackgroundScheduler()
 
+# TODO: enable webbased configuration of timelapses
 
 app = FastAPI()
 app.mount("/pictures", StaticFiles(directory="pictures"), name="pictures")
