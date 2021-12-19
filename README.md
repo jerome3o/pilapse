@@ -24,5 +24,8 @@ uvicorn --host 0.0.0.0 timelapse.server:app --reload
 These are quick notes for manual testing
 
 ```
-ffmpeg -r 60 -pattern_type glob -i '*.jpg' -y video.mp4
+ffmpeg -r 60 -vf "transpose=2"  -pattern_type glob -i '*.jpg' -y video.mp4
+
+ffmpeg -i video.mp4 -vf "transpose=2" video2.mp4
 ```
+

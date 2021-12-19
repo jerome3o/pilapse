@@ -9,11 +9,12 @@ _logger = logging.getLogger(__file__)
 
 
 # TODO: integrate with service
+original_res = (3280, 2464)
 
 
 def main():
-    # create_gif_for_session("misc", fps=5)
-    create_gif_for_session("testing_day_1", fps=30)
+    create_gif_for_session("misc", fps=5)
+    # create_gif_for_session("testing_day_1", fps=30)
 
 
 def create_gif_for_session(session: str, fps: float = 60):
@@ -34,7 +35,7 @@ def create_gif_from_files(files: List[Path], file_out: Path, fps: int = 60):
     n_frames = len(imgs)
 
     _logger.info("Rotating images")
-    img, *imgs = [i.resize((x // 4 for x in i.size)).rotate(90) for i in imgs]
+    img, *imgs = [i.resize((x // 10 for x in i.size)).rotate(90) for i in imgs]
 
     _logger.info("Saving GIF")
     img.save(
