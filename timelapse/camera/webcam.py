@@ -19,7 +19,7 @@ def webcam():
 def take_picture(file_path: Union[str, Path], buffer_frames: int = 20):
 
     with webcam() as cap:
-
+        print(cap)
         Path(file_path).parent.mkdir(exist_ok=True, parents=True)
         ret, frame = cap.read()  # return a single frame in variable `frame`
 
