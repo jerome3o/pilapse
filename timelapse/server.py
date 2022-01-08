@@ -35,14 +35,14 @@ app.mount(
 templates = Jinja2Templates(directory="templates")
 
 
-# @app.get("/snap", response_class=HTMLResponse)
-# def take(request: Request):
-#     path = Path(f"pictures/snaps/snap_{get_time_str()}.png")
-#     _logger.info(f"Taking picture {path}")
-#     take_picture(path)
-#     path = f'/{path.resolve().relative_to(Path(".").resolve())}'
+@app.get("/snap", response_class=HTMLResponse)
+def take(request: Request):
+    path = Path(f"pictures/snaps/snap_{get_time_str()}.png")
+    _logger.info(f"Taking picture {path}")
+    take_picture(path)
+    path = f'/{path.resolve().relative_to(Path(".").resolve())}'
 
-#     return templates.TemplateResponse("snap.html", {"p": path, "request": request})
+    return templates.TemplateResponse("snap.html", {"p": path, "request": request})
 
 
 @app.get("/list")
